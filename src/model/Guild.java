@@ -1,12 +1,5 @@
 package model;
 
-/*
--	String name
--	List<Adventurer> adventurers
--	Constructor, Getters, and toString() method.
--	Implement the Comparable interface
- */
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +7,9 @@ public class Guild implements Comparable<Guild> {
     private String name;
     private List<Adventurer> adventurers;
 
-    public Guild(String name) {
+    public Guild(String name, List<Adventurer> adventurers) {
         this.name = name;
-        this.adventurers = new ArrayList<>();
+        this.adventurers = new ArrayList<>(adventurers);
     }
 
     public String getName() {
