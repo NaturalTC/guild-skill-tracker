@@ -12,11 +12,11 @@ public class Main {
 
         // Add adventurers to the list (example)
         adventurers.add(new Adventurer("Aragorn", 87, "Warrior",
-                1500.0, new ArrayList<>()));
+                1500.0));
         adventurers.add(new Adventurer("Legolas", 2931, "Rogue",
-                1200.0, new ArrayList<>()));
+                1200.0));
         adventurers.add(new Adventurer("Gandalf", 2019, "Mage",
-                2000.0, new ArrayList<>()));
+                2000.0));
 
         for (Adventurer adv : adventurers) {
             System.out.println("Adventurer: " + adv.getName() + ", Role: " + adv.getRole() +

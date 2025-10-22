@@ -15,7 +15,7 @@ public class Adventurer implements Comparable<Adventurer> {
     private List<Skill> skills;
 
     // Constructor
-    public Adventurer(String name, int age, String role, double goldEarned, List<Skill> skills) {
+    public Adventurer(String name, int age, String role, double goldEarned) {
         this.name = name;
         this.age = age;
         this.role = role.strip().toLowerCase();
