@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * An enumeration representing various skills that characters can possess.
+ */
 public enum Skill {
     SWORDSMANSHIP,
     ARCHERY,
