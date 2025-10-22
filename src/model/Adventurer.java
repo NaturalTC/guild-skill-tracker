@@ -14,7 +14,7 @@ public class Adventurer implements Comparable<Adventurer> {
     private double goldEarned;
     private List<Skill> skills;
 
-    // Constructor
+    // Constructor - I should probably handle the role verification in a different way
     public Adventurer(String name, int age, String role, double goldEarned) {
         this.name = name;
         this.age = age;
@@ -30,7 +30,7 @@ public class Adventurer implements Comparable<Adventurer> {
             this.skills.add(Skill.THIEVERY);
             this.skills.add(Skill.STEALTH);
             this.skills.add(Skill.MEMECRAFTING);
-        } else if (role.equalsIgnoreCase("mage")) {
+        } else if (role.equalsIgnoreCase("wizard")) {
             this.skills.add(Skill.HEALING);
             this.skills.add(Skill.NECROMANCY);
             this.skills.add(Skill.RUNECRAFTING);
