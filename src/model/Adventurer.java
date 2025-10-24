@@ -20,23 +20,8 @@ public class Adventurer implements Comparable<Adventurer> {
         this.age = age;
         this.role = role.strip().toLowerCase();
         this.goldEarned = goldEarned;
-        this.skills = new ArrayList<>();
-        if (role.equalsIgnoreCase("warrior")) {
-            this.skills.add(Skill.SWORDSMANSHIP);
-            this.skills.add(Skill.BLACKSMITHING);
-            this.skills.add(Skill.HORSEMANSHIP);
-            this.skills.add(Skill.ARCHERY);
-        } else if (role.equalsIgnoreCase("rogue")) {
-            this.skills.add(Skill.THIEVERY);
-            this.skills.add(Skill.STEALTH);
-            this.skills.add(Skill.MEMECRAFTING);
-        } else if (role.equalsIgnoreCase("wizard")) {
-            this.skills.add(Skill.HEALING);
-            this.skills.add(Skill.NECROMANCY);
-            this.skills.add(Skill.RUNECRAFTING);
-        } else {
-            this.skills = new ArrayList<>(skills);
-        }
+        setSkills(skills);
+
     }
 
     // Methods
@@ -67,6 +52,34 @@ public class Adventurer implements Comparable<Adventurer> {
         return goldEarned;
     }
 
+    public void setGoldEarned(double goldEarned) {
+        this.goldEarned = goldEarned;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = new ArrayList<>(skills);
+        switch (role) {
+            case "warrior":
+                this.skills.add(Skill.SWORDSMANSHIP);
+                this.skills.add(Skill.BLACKSMITHING);
+                this.skills.add(Skill.HORSEMANSHIP);
+                this.skills.add(Skill.ARCHERY);
+                break;
+            case "rogue":
+                this.skills.add(Skill.THIEVERY);
+                this.skills.add(Skill.STEALTH);
+                this.skills.add(Skill.MEMECRAFTING);
+                break;
+            case "wizard":
+                this.skills.add(Skill.HEALING);
+                this.skills.add(Skill.NECROMANCY);
+                this.skills.add(Skill.RUNECRAFTING);
+                break;
+            default:
+                // keep provided skills
+                break;
+        }
+    }
     // toString Method
     public String toString() {
         return "Name: " + name +
