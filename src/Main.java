@@ -5,8 +5,8 @@ import model.Guild;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Main {
-
+public class Main
+{
     // # ─── Sample Data ─────────────────────────────────────────────────────────────────────────
     public static List<Guild> getData() {
         ArrayList<Guild> guildList = new ArrayList<>();
@@ -29,29 +29,23 @@ public class Main {
     public static void main(String[] args) {
         List<Guild> guildData = getData();
 
-        // Find Adventurers by Skill
         System.out.println("\n===Find Adventurer by skill (Swordsmanship)===");
         List<String> names = listAdventurerNamesWithSkill(guildData, Skill.SWORDSMANSHIP);
         names.forEach(System.out::println);
 
-        // Find Adventurers by Role
-        System.out.println("\n===Find Adventurer by role (Wizard)===");
+        System.out.println("\n===Group Adventurer by role===");
         listAdventurersByRole(guildData); // return list of Adventurer names with role "Wizard"
 
-        // Find Adventurer with the most Skills
         System.out.println("\n===Find Adventurer with the most skills===");
         var mostSkilledAdventurer = getAdventurerWithMostSkills(guildData);
         System.out.println(mostSkilledAdventurer);
 
-        // Rank Guilds by Average Adventurer Age
         System.out.println("\n===Rank Guilds by Average Adventurer Age===");
         rankGuildsByAverageAdventurerAge(guildData);
 
-        // Map Skill to Adventurer Count
         System.out.println("\n===Map Skill to Adventurer Count===");
         mapSkillToAdventurerCount(guildData);
 
-        // Grant Bonus to Low Earning Adventurers
         System.out.println("\n===Grant Bonus to Low Earning Adventurers===");
         grantBonusToLowEarningAdventurers(guildData);
 
@@ -62,7 +56,7 @@ public class Main {
         return guild.stream()
                 .flatMap(g -> g.getAdventurers().stream())
                 .filter(a -> a.getSkills().contains(skill))
-                .map(a -> a.getName()) // Lambda Version
+                .map(a -> a.getName())
                 .collect(Collectors.toList());
     }
 
@@ -82,7 +76,7 @@ public class Main {
         return guildData.stream()
                 .flatMap(g -> g.getAdventurers().stream())
                 .max(Comparator.comparingInt(a -> a.getSkills().size()))
-                .orElse(null);
+                .orElse(null); // Because max returns an Optional I must handle null
     }
 
     private static void rankGuildsByAverageAdventurerAge(List<Guild> guildData) {
@@ -91,11 +85,9 @@ public class Main {
                     g.getAdventurers().stream()
                             .mapToInt(Adventurer::getAge)
                             .average()
-                            .orElse(0)
+                            .orElse(0) // Because average returns an Optional I must handle null
             );
-
-            System.out.println("Guild: " + g.getName());
-            System.out.println("Average Age: " + avgAge);
+            System.out.println("Guild: " + g.getName()+ "    Average Age: " + avgAge);
         });
     }
 
@@ -118,12 +110,12 @@ public class Main {
                     if (a.getGoldEarned() < 1000) {
                         finalGold *= 1.2;                          // Apply 20% bonus
                     }
-                    System.out.println(a.getName() + ": " + finalGold);
+                    System.out.println(a.getName() + "   Old: " + a.getGoldEarned() + "    New: " + finalGold);
                 });
     }
 }
 
-    /*
+/*
 # ─── Helpful Methods and Classes ────────────────────────────────────────────────────────────────
 
 # ─── Streams & Terminals ────────────────────────────────────────────────────────────────────────
@@ -165,4 +157,4 @@ public class Main {
                                  criterion and the value is a list of matching elements.
 
     Collectors.counting() - Counts the number of elements in each group (commonly used with groupingBy).
-     */
+*/
