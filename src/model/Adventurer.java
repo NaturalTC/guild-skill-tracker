@@ -16,7 +16,8 @@ public class Adventurer implements Comparable<Adventurer>
     private List<Skill> skills;
 
     // Constructor
-    public Adventurer(String name, int age, String role, double goldEarned) {
+    public Adventurer(String name, int age, String role, double goldEarned)
+    {
         this.name = name;
         this.age = age;
         this.role = role.strip().toLowerCase();
@@ -27,22 +28,27 @@ public class Adventurer implements Comparable<Adventurer>
     }
 
     // Getters
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
-    public int getAge() {
+    public int getAge()
+    {
         return age;
     }
 
-    public String getRole() {
+    public String getRole()
+    {
         return role;
     }
 
-    public double getGoldEarned() {
+    public double getGoldEarned()
+    {
         return goldEarned;
     }
 
-    public List<Skill> getSkills() {
+    public List<Skill> getSkills()
+    {
         return new ArrayList<>(skills);
     }
 
@@ -74,7 +80,8 @@ public class Adventurer implements Comparable<Adventurer>
 
     // Compare Amount of Gold
     @Override
-    public int compareTo(Adventurer other) {
+    public int compareTo(Adventurer other)
+    {
         return Double.compare(this.goldEarned, other.goldEarned);
     }
 
