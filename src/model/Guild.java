@@ -3,15 +3,20 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Guild implements Comparable<Guild> {
+
+public class Guild implements Comparable<Guild>
+{
+    // Attributes
     private String name;
     private List<Adventurer> adventurers;
 
+    // Constructor
     public Guild(String name, List<Adventurer> adventurers) {
         this.name = name;
         this.adventurers = new ArrayList<>(adventurers);
     }
 
+    // Getters
     public String getName() {
         return name;
     }
@@ -20,16 +25,15 @@ public class Guild implements Comparable<Guild> {
         return new ArrayList<>(adventurers);
     }
 
+    // Compares size of each guild
     @Override
-    public String toString() {
-        return "Guild{" +
-                "name='" + name + '\'' +
-                ", adventurers=" + adventurers +
-                '}';
+    public int compareTo(Guild other) {
+        return Integer.compare(this.adventurers.size(), other.adventurers.size());
     }
 
     @Override
-    public int compareTo(Guild previous) {
-        return Integer.compare(previous.adventurers.size(), this.adventurers.size());
+    public String toString() {
+        return "Guild: " + name +
+                "\nAdventurers: " + adventurers;
     }
 }

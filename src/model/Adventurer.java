@@ -5,7 +5,8 @@ import enums.Skill;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adventurer implements Comparable<Adventurer> {
+public class Adventurer implements Comparable<Adventurer>
+{
 
     // Attributes
     private String name;
@@ -14,32 +15,21 @@ public class Adventurer implements Comparable<Adventurer> {
     private double goldEarned;
     private List<Skill> skills;
 
-    // Constructor - I should probably handle the role verification in a different way
+    // Constructor
     public Adventurer(String name, int age, String role, double goldEarned) {
         this.name = name;
         this.age = age;
         this.role = role.strip().toLowerCase();
         this.goldEarned = goldEarned;
-        setSkills(skills);
+        this.skills = new  ArrayList<>();
+        assignRoleSkills();
 
     }
 
-    // Methods
-    @Override
-    public int compareTo(Adventurer previous) {
-        return Double.compare(previous.goldEarned, this.goldEarned);
-    }
-
-    // Get Skills
-    public List<Skill> getSkills() {
-        return new ArrayList<>(skills);
-    }
-
-    // Getters and Setters
+    // Getters
     public String getName() {
         return name;
     }
-
     public int getAge() {
         return age;
     }
@@ -52,13 +42,15 @@ public class Adventurer implements Comparable<Adventurer> {
         return goldEarned;
     }
 
-    public void setGoldEarned(double goldEarned) {
-        this.goldEarned = goldEarned;
+    public List<Skill> getSkills() {
+        return new ArrayList<>(skills);
     }
 
-    public void setSkills(List<Skill> skills) {
-        this.skills = new ArrayList<>(skills);
-        switch (role) {
+    // Helper Method
+    public void assignRoleSkills()
+    {
+        switch (role)
+        {
             case "warrior":
                 this.skills.add(Skill.SWORDSMANSHIP);
                 this.skills.add(Skill.BLACKSMITHING);
@@ -76,12 +68,18 @@ public class Adventurer implements Comparable<Adventurer> {
                 this.skills.add(Skill.RUNECRAFTING);
                 break;
             default:
-                // keep provided skills
                 break;
         }
     }
-    // toString Method
-    public String toString() {
+
+    // Compare Amount of Gold
+    @Override
+    public int compareTo(Adventurer other) {
+        return Double.compare(this.goldEarned, other.goldEarned);
+    }
+
+    public String toString()
+    {
         return "Name: " + name +
                 "\nAge: " + age +
                 "\nRole: " + role +
